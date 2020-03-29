@@ -118,9 +118,11 @@ func processPathForBuild(build uint32) string {
 
 		// Get the path of the correct version and make sure the exe exists
 		path = filepath.Join(dir, fmt.Sprintf("Base%v", build), exe)
-		if _, err := os.Stat(path); err != nil {
-			log.Fatalf("Base version not found: %v", err)
-		}
+		/*
+			if _, err := os.Stat(path); err != nil {
+				log.Fatalf("Base version not found: %v", err)
+			}
+		*/
 	}
 	return path
 }

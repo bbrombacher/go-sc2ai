@@ -60,14 +60,15 @@ func (config *gameConfig) killAll() {
 func (config *gameConfig) launchProcesses(clients []*client.Client) []client.ProcessInfo {
 	// Make sure we have a valid executable path
 	path := processPathForBuild(launchBaseBuild)
-	if _, err := os.Stat(path); err != nil {
-		log.Print("Executable path can't be found, try running the StarCraft II executable first.")
-		if len(path) > 0 {
-			log.Printf("%v does not exist on your filesystem.", path)
+	/*
+		if _, err := os.Stat(path); err != nil {
+			log.Print("Executable path can't be found, try running the StarCraft II executable first.")
+			if len(path) > 0 {
+				log.Printf("%v does not exist on your filesystem.", path)
+			}
+			os.Exit(1)
 		}
-		os.Exit(1)
-	}
-
+	*/
 	info := make([]client.ProcessInfo, len(clients))
 
 	// Start an sc2 process for each bot
@@ -106,7 +107,7 @@ func (config *gameConfig) launchAndAttach(path string, c *client.Client) client.
 
 		// TODO: window size and position
 
-		pi.Path = path
+		pi.Path = "/Applications/StarCraft II/Versions/Base78285/SC2.app/Contents/MacOS/SC2" //path
 		pi.PID = startProcess(pi.Path, args)
 		if pi.PID == 0 {
 			log.Print("Unable to start sc2 executable with path: ", pi.Path)
