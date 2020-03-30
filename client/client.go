@@ -163,7 +163,7 @@ func (c *Client) Proto() api.ResponsePing {
 // RequestStartReplay ...
 func (c *Client) RequestStartReplay(request api.RequestStartReplay) error {
 	c.replayInfo = nil
-
+	c.realtime = request.GetRealtime()
 	r, err := c.connection.startReplay(request)
 	if err != nil {
 		return err
